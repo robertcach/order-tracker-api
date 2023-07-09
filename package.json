@@ -1,0 +1,7 @@
+{
+  "name": "order-tracker-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Robert Cabrera",
+  "license": "MIT"
+}
