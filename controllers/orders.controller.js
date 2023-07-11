@@ -20,3 +20,9 @@ module.exports.update = (req, res, next) => {
     .then((updatedOrder) => res.status(200).json(updatedOrder))
     .catch(next);
 };
+
+module.exports.delete = (req, res, next) => {
+  Order.findByIdAndRemove(req.params.id)
+    .then((orderToDelete) => res.status(200).json(orderToDelete))
+    .catch(next);
+};

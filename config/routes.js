@@ -15,6 +15,7 @@ router.get("/product/:id", productController.detail);
 router.post("/order/new", orderController.create);
 router.get("/order/:id", orderController.detail);
 router.patch("/order/:id", orderController.update);
+router.delete("/order/:id", orderController.delete);
 
 /* CUSTOMER */
 router.post("/customer/new", customerController.create);
