@@ -26,3 +26,9 @@ module.exports.delete = (req, res, next) => {
     .then((orderToDelete) => res.status(200).json(orderToDelete))
     .catch(next);
 };
+
+module.exports.list = (req, res, next) => {
+  Order.find()
+    .then((orders) => res.status(200).json(orders))
+    .catch(next);
+};

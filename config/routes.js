@@ -5,7 +5,7 @@ const orderController = require("../controllers/orders.controller");
 const customerController = require("../controllers/customers.controller");
 
 /* HOME */
-router.get("/", (req, res, next) => res.status(200).json({ ok: true }));
+router.get("/", orderController.list);
 
 /* PRODUCTS */
 router.post("/product/new", productController.create);
