@@ -14,6 +14,7 @@ router.get("/product/:id", productController.detail);
 /* ORDERS */
 router.post("/order/new", orderController.create);
 router.get("/order/:id", orderController.detail);
+router.patch("/order/:id", orderController.update);
 
 /* CUSTOMER */
 router.post("/customer/new", customerController.create);

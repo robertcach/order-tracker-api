@@ -14,3 +14,9 @@ module.exports.detail = (req, res, next) => {
     .then((order) => res.status(200).json(order))
     .catch(next);
 };
+
+module.exports.update = (req, res, next) => {
+  Order.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .then((updatedOrder) => res.status(200).json(updatedOrder))
+    .catch(next);
+};
