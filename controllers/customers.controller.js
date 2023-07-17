@@ -31,3 +31,9 @@ module.exports.getCurrentUser = (req, res, next) => {
     })
     .catch(next);
 };
+
+module.exports.list = (req, res, next) => {
+  Customer.find()
+    .then((customers) => res.status(200).json(customers))
+    .catch(next);
+};
