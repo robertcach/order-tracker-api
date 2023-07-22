@@ -8,25 +8,20 @@ module.exports.create = (req, res, next) => {
 
 module.exports.getUserById = (req, res, next) => {
   Customer.findById(req.params.id)
+    .populate({
+      path: "orders",
+      select: "_id",
+      options: { sort: [{ _id: "desc" }] },
+    })
+    .sort({ orders: "desc" })
     .then((customer) => {
       if (!customer) {
         next(createError(404, "Customer not found"));
       } else {
-        res.status(200).json(customer);
-      }
-    })
-    .catch(next);
-};
+        const ordersIds = customer.orders.map((order) => order._id);
+        customer.orders = ordersIds;
 
-module.exports.getCurrentUser = (req, res, next) => {
-  Customer.findById(req.customer)
-    .populate({ path: "orders", options: { sort: [{ orders: "desc" }] } })
-    .sort({ plants: "desc" })
-    .then((user) => {
-      if (!user) {
-        next(createError(404, "User not found"));
-      } else {
-        res.status(200).json(user);
+        res.status(200).json(customer);
       }
     })
     .catch(next);

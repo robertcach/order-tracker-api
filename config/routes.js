@@ -20,7 +20,6 @@ router.delete("/order/:id", orderController.delete);
 /* CUSTOMER */
 router.post("/customer/new", customerController.create);
 router.get("/customers", customerController.list);
-router.get("/customer/me", customerController.getCurrentUser);
 router.get("/customer/:id", customerController.getUserById);
 
 module.exports = router;
