@@ -1,9 +1,7 @@
-const moongose = require("mongoose");
+const mongoose = require("mongoose");
 const Customer = require("./Customer.model");
-const Products = require("./Product.model");
-const { default: mongoose } = require("mongoose");
 
-const orderSchema = new moongose.Schema(
+const orderSchema = new mongoose.Schema(
   {
     total: {
       type: Number,
@@ -13,12 +11,13 @@ const orderSchema = new moongose.Schema(
       required: [true, "Status is required"],
     },
     customer: {
-      type: moongose.Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: Customer.modelName,
       required: true,
     },
     products: [
       {
-        type: moongose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
       },
     ],
