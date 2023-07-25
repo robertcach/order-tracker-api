@@ -13,6 +13,7 @@ router.get("/product/:id", productController.detail);
 
 /* ORDERS */
 router.post("/order/new", orderController.create);
+router.get("/orders", orderController.list);
 router.get("/order/:id", orderController.detail);
 router.patch("/order/:id", orderController.update);
 router.delete("/order/:id", orderController.delete);
