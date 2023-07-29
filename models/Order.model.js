@@ -10,9 +10,9 @@ const orderSchema = new mongoose.Schema(
       type: String,
       required: [true, "Status is required"],
     },
-    customer: {
+    customerID: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: Customer.modelName,
+      ref: "Customer",
       required: true,
     },
     products: [
@@ -33,6 +33,13 @@ const orderSchema = new mongoose.Schema(
     },
   }
 );
+
+orderSchema.virtual("customerData", {
+  ref: "Customer",
+  localField: "customerID",
+  foreignField: "_id",
+  justOne: false,
+});
 
 const Order = mongoose.model("Order", orderSchema);
 module.exports = Order;

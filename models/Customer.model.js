@@ -37,7 +37,7 @@ const customerSchema = new mongoose.Schema(
 customerSchema.virtual("orders", {
   ref: "Order",
   localField: "_id",
-  foreignField: "customer",
+  foreignField: "customerID",
   justOne: false,
 });
 
