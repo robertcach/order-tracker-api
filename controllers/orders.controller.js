@@ -10,12 +10,12 @@ module.exports.create = (req, res, next) => {
 
 module.exports.detail = (req, res, next) => {
   Order.findById(req.params.id)
-    .populate("customerData")
+    .populate("customer")
     .populate({
-      path: "productsData",
-      options: { sort: [{ productsData: "desc" }] },
+      path: "products",
+      options: { sort: [{ products: "desc" }] },
     })
-    .sort({ productsData: "desc" })
+    .sort({ products: "desc" })
     .then((order) => res.status(200).json(order))
     .catch(next);
 };
@@ -34,12 +34,12 @@ module.exports.delete = (req, res, next) => {
 
 module.exports.list = (req, res, next) => {
   Order.find()
-    .populate("customerData")
+    .populate("customer")
     .populate({
-      path: "productsData",
-      options: { sort: [{ productsData: "desc" }] },
+      path: "products",
+      options: { sort: [{ products: "desc" }] },
     })
-    .sort({ productsData: "desc" })
+    .sort({ products: "desc" })
     .then((orders) => res.status(200).json(orders))
     .catch(next);
 };
