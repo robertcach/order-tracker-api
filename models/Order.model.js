@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Customer = require("./Customer.model");
+const Product = require("./Product.model");
 
 const orderSchema = new mongoose.Schema(
   {
@@ -12,12 +13,13 @@ const orderSchema = new mongoose.Schema(
     },
     customerID: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Customer",
+      ref: Customer.modelName,
       required: true,
     },
     products: [
       {
         type: mongoose.Schema.Types.ObjectId,
+        ref: Product.modelName,
         required: true,
       },
     ],
@@ -37,6 +39,13 @@ const orderSchema = new mongoose.Schema(
 orderSchema.virtual("customerData", {
   ref: "Customer",
   localField: "customerID",
+  foreignField: "_id",
+  justOne: false,
+});
+
+orderSchema.virtual("productsData", {
+  ref: "Product",
+  localField: "products",
   foreignField: "_id",
   justOne: false,
 });
